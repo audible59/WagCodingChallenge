@@ -4,7 +4,8 @@ platform :ios, '10.0'
 inhibit_all_warnings!
 
 def shared_pods
-    pod 'Alamofire', '~> 4.7'
+    pod 'Alamofire'
+    pod 'AlamofireImage'
     pod 'ReachabilitySwift'
 end
 

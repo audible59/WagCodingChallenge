@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.8.2)
+  - AlamofireImage (3.5.2):
+    - Alamofire (~> 4.8)
   - OHHTTPStubs/Core (8.0.0)
   - OHHTTPStubs/Default (8.0.0):
     - OHHTTPStubs/Core
@@ -16,21 +18,24 @@ PODS:
   - ReachabilitySwift (4.3.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7)
+  - Alamofire
+  - AlamofireImage
   - OHHTTPStubs/Swift
   - ReachabilitySwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AlamofireImage
     - OHHTTPStubs
     - ReachabilitySwift
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
 
-PODFILE CHECKSUM: a81c5b6e431aecfa78f6b6ffd0a99d8c8a7779b3
+PODFILE CHECKSUM: 79fc33b52a7df20b0d0dcf9b1fef625231f74ce0
 
 COCOAPODS: 1.7.1

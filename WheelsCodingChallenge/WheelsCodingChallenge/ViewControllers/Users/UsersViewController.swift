@@ -8,12 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class UsersViewController: UIViewController {
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fetchStackOverflowUsers()
+    }
+    
+    //MARK: - IBAction Methods
+    @IBAction func onAddUserBarButtonItemPressed(_ sender: Any) {
+        //TODO: Open the Add User UIViewController
     }
     
     func fetchStackOverflowUsers() {

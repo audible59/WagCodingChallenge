@@ -10,13 +10,14 @@
 		363A92C52335B0B4000D5628 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A92C32335B0B4000D5628 /* Networking.swift */; };
 		363A92C82335C0F9000D5628 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A92C72335C0F9000D5628 /* Users.swift */; };
 		3646A3512335AAAE00429C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3502335AAAE00429C76 /* AppDelegate.swift */; };
-		3646A3532335AAAE00429C76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3522335AAAE00429C76 /* ViewController.swift */; };
+		3646A3532335AAAE00429C76 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3522335AAAE00429C76 /* UsersViewController.swift */; };
 		3646A3562335AAAE00429C76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3646A3542335AAAE00429C76 /* Main.storyboard */; };
-		3646A3592335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3572335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodeld */; };
 		3646A35B2335AAAE00429C76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3646A35A2335AAAE00429C76 /* Assets.xcassets */; };
 		3646A35E2335AAAE00429C76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3646A35C2335AAAE00429C76 /* LaunchScreen.storyboard */; };
 		3646A3692335AAAE00429C76 /* WheelsCodingChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3682335AAAE00429C76 /* WheelsCodingChallengeTests.swift */; };
 		3646A3742335AAAE00429C76 /* WheelsCodingChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3732335AAAE00429C76 /* WheelsCodingChallengeUITests.swift */; };
+		3687DAB82336618500C1505C /* WheelsCodingChallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3687DAB62336618400C1505C /* WheelsCodingChallenge.xcdatamodeld */; };
+		3687DABB233662FB00C1505C /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3687DABA233662FB00C1505C /* UsersTableViewController.swift */; };
 		5976B8D0D9C978351082628B /* libPods-WheelsCodingChallengeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15266823BC157ADB42617227 /* libPods-WheelsCodingChallengeTests.a */; };
 		A7B061C787E40DDEDA4B76BF /* Pods_WheelsCodingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269BE978AAD81B1E237C9F61 /* Pods_WheelsCodingChallenge.framework */; };
 		F5B2434A27C0209EB0A5DEEF /* libPods-WheelsCodingChallengeUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B8544DFB480155F85C9565 /* libPods-WheelsCodingChallengeUITests.a */; };
@@ -47,9 +48,8 @@
 		363A92C72335C0F9000D5628 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		3646A34D2335AAAE00429C76 /* WheelsCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheelsCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3646A3502335AAAE00429C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3646A3522335AAAE00429C76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3646A3522335AAAE00429C76 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		3646A3552335AAAE00429C76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3646A3582335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WheelsCodingChallenge.xcdatamodel; sourceTree = "<group>"; };
 		3646A35A2335AAAE00429C76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3646A35D2335AAAE00429C76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3646A35F2335AAAE00429C76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		3646A36F2335AAAE00429C76 /* WheelsCodingChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WheelsCodingChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3646A3732335AAAE00429C76 /* WheelsCodingChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelsCodingChallengeUITests.swift; sourceTree = "<group>"; };
 		3646A3752335AAAE00429C76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3687DAB72336618500C1505C /* WheelsCodingChallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WheelsCodingChallenge.xcdatamodel; sourceTree = "<group>"; };
+		3687DABA233662FB00C1505C /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		43D3868D362D695444BCB1E8 /* Pods-WheelsCodingChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheelsCodingChallenge.debug.xcconfig"; path = "Target Support Files/Pods-WheelsCodingChallenge/Pods-WheelsCodingChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		45AF77B220A59C63AA182B19 /* Pods-WheelsCodingChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheelsCodingChallengeTests.release.xcconfig"; path = "Target Support Files/Pods-WheelsCodingChallengeTests/Pods-WheelsCodingChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B9B33EC280496200EA5C3B6 /* Pods-WheelsCodingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheelsCodingChallenge.release.xcconfig"; path = "Target Support Files/Pods-WheelsCodingChallenge/Pods-WheelsCodingChallenge.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,9 +143,7 @@
 				3646A3822335ABCC00429C76 /* ViewControllers */,
 				363A92C12335B070000D5628 /* Networking */,
 				3646A3832335ABE500429C76 /* Storyboards */,
-				3646A35A2335AAAE00429C76 /* Assets.xcassets */,
-				3646A35F2335AAAE00429C76 /* Info.plist */,
-				3646A3572335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodeld */,
+				3687DAB52336601900C1505C /* Miscellaneous */,
 			);
 			path = WheelsCodingChallenge;
 			sourceTree = "<group>";
@@ -177,7 +177,7 @@
 		3646A3822335ABCC00429C76 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3646A3522335AAAE00429C76 /* ViewController.swift */,
+				3687DAB9233662DA00C1505C /* Users */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -185,10 +185,29 @@
 		3646A3832335ABE500429C76 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				3646A3542335AAAE00429C76 /* Main.storyboard */,
 				3646A35C2335AAAE00429C76 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		3687DAB52336601900C1505C /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				3646A35A2335AAAE00429C76 /* Assets.xcassets */,
+				3646A35F2335AAAE00429C76 /* Info.plist */,
+				3687DAB62336618400C1505C /* WheelsCodingChallenge.xcdatamodeld */,
+			);
+			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		3687DAB9233662DA00C1505C /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				3646A3522335AAAE00429C76 /* UsersViewController.swift */,
+				3687DABA233662FB00C1505C /* UsersTableViewController.swift */,
+				3646A3542335AAAE00429C76 /* Main.storyboard */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		C5BD1650CD286D916F1F239A /* Frameworks */ = {
@@ -435,11 +454,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3646A3592335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodeld in Sources */,
 				363A92C52335B0B4000D5628 /* Networking.swift in Sources */,
 				363A92C82335C0F9000D5628 /* Users.swift in Sources */,
-				3646A3532335AAAE00429C76 /* ViewController.swift in Sources */,
+				3687DABB233662FB00C1505C /* UsersTableViewController.swift in Sources */,
+				3646A3532335AAAE00429C76 /* UsersViewController.swift in Sources */,
 				3646A3512335AAAE00429C76 /* AppDelegate.swift in Sources */,
+				3687DAB82336618500C1505C /* WheelsCodingChallenge.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,7 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WheelsCodingChallenge/Info.plist;
+				INFOPLIST_FILE = WheelsCodingChallenge/Miscellaneous/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -634,7 +654,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WheelsCodingChallenge/Info.plist;
+				INFOPLIST_FILE = WheelsCodingChallenge/Miscellaneous/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -770,12 +790,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		3646A3572335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodeld */ = {
+		3687DAB62336618400C1505C /* WheelsCodingChallenge.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				3646A3582335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodel */,
+				3687DAB72336618500C1505C /* WheelsCodingChallenge.xcdatamodel */,
 			);
-			currentVersion = 3646A3582335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodel */;
+			currentVersion = 3687DAB72336618500C1505C /* WheelsCodingChallenge.xcdatamodel */;
 			path = WheelsCodingChallenge.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
