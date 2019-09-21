@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		363A92C52335B0B4000D5628 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A92C32335B0B4000D5628 /* Networking.swift */; };
-		363A92C82335C0F9000D5628 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A92C72335C0F9000D5628 /* User.swift */; };
+		363A92C82335C0F9000D5628 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A92C72335C0F9000D5628 /* Users.swift */; };
 		3646A3512335AAAE00429C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3502335AAAE00429C76 /* AppDelegate.swift */; };
 		3646A3532335AAAE00429C76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3646A3522335AAAE00429C76 /* ViewController.swift */; };
 		3646A3562335AAAE00429C76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3646A3542335AAAE00429C76 /* Main.storyboard */; };
@@ -44,7 +44,7 @@
 		269BE978AAD81B1E237C9F61 /* Pods_WheelsCodingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WheelsCodingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CFBADE1FC7BD9B38ADBB01 /* Pods-WheelsCodingChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WheelsCodingChallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-WheelsCodingChallengeUITests/Pods-WheelsCodingChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		363A92C32335B0B4000D5628 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		363A92C72335C0F9000D5628 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		363A92C72335C0F9000D5628 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		3646A34D2335AAAE00429C76 /* WheelsCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheelsCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3646A3502335AAAE00429C76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3646A3522335AAAE00429C76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		363A92C62335BF34000D5628 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				363A92C72335C0F9000D5628 /* User.swift */,
+				363A92C72335C0F9000D5628 /* Users.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -437,7 +437,7 @@
 			files = (
 				3646A3592335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodeld in Sources */,
 				363A92C52335B0B4000D5628 /* Networking.swift in Sources */,
-				363A92C82335C0F9000D5628 /* User.swift in Sources */,
+				363A92C82335C0F9000D5628 /* Users.swift in Sources */,
 				3646A3532335AAAE00429C76 /* ViewController.swift in Sources */,
 				3646A3512335AAAE00429C76 /* AppDelegate.swift in Sources */,
 			);

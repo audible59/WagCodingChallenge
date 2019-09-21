@@ -1,0 +1,36 @@
+PODS:
+  - Alamofire (4.8.2)
+  - OHHTTPStubs/Core (8.0.0)
+  - OHHTTPStubs/Default (8.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/Swift (8.0.0):
+    - OHHTTPStubs/Default
+  - ReachabilitySwift (4.3.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - OHHTTPStubs/Swift
+  - ReachabilitySwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - OHHTTPStubs
+    - ReachabilitySwift
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+
+PODFILE CHECKSUM: a81c5b6e431aecfa78f6b6ffd0a99d8c8a7779b3
+
+COCOAPODS: 1.7.1

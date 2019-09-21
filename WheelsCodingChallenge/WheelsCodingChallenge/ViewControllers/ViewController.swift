@@ -13,8 +13,17 @@ class ViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchStackOverflowUsers()
     }
     
-    
+    func fetchStackOverflowUsers() {
+        Networking().getStackOverflowUsers { [weak self] (stackOverflowUsers, resultStatus) in
+            guard let strongSelf = self else { return }
+            if let users = stackOverflowUsers as? [Users], users.count > 0 {
+                
+            } else {
+                
+            }
+        }
+    }
 }
-
