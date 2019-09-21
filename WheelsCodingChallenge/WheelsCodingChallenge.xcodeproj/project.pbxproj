@@ -99,11 +99,10 @@
 		3646A34F2335AAAE00429C76 /* WheelsCodingChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				3646A3502335AAAE00429C76 /* AppDelegate.swift */,
-				3646A3522335AAAE00429C76 /* ViewController.swift */,
-				3646A3542335AAAE00429C76 /* Main.storyboard */,
+				3646A3812335AB9800429C76 /* ApplicationDelegate */,
+				3646A3822335ABCC00429C76 /* ViewControllers */,
+				3646A3832335ABE500429C76 /* Storyboards */,
 				3646A35A2335AAAE00429C76 /* Assets.xcassets */,
-				3646A35C2335AAAE00429C76 /* LaunchScreen.storyboard */,
 				3646A35F2335AAAE00429C76 /* Info.plist */,
 				3646A3572335AAAE00429C76 /* WheelsCodingChallenge.xcdatamodeld */,
 			);
@@ -126,6 +125,31 @@
 				3646A3752335AAAE00429C76 /* Info.plist */,
 			);
 			path = WheelsCodingChallengeUITests;
+			sourceTree = "<group>";
+		};
+		3646A3812335AB9800429C76 /* ApplicationDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				3646A3502335AAAE00429C76 /* AppDelegate.swift */,
+			);
+			path = ApplicationDelegate;
+			sourceTree = "<group>";
+		};
+		3646A3822335ABCC00429C76 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3646A3522335AAAE00429C76 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3646A3832335ABE500429C76 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3646A3542335AAAE00429C76 /* Main.storyboard */,
+				3646A35C2335AAAE00429C76 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
