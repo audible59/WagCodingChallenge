@@ -25,6 +25,12 @@ class Networking: NSObject {
     let networkingQueue = DispatchQueue.global(qos: .background)
     
     //MARK: - GET Stack Overflow Users
+    
+    
+    /// This method will retrieve a user list from the Stack Overflow API. Only the first page will be fetched.
+    ///
+    /// - Parameter completion: The completion handler to be called for success or failure. A decoded Users object
+    ///                         will be returned along with the result of the server response.
     func getStackOverflowUsers(completion: @escaping (Any?, ResultStatus) -> ()) {
         if let url = URL(string: Constants.stackOverflowURL) {
             var request = URLRequest(url: url)

@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     func fetchStackOverflowUsers() {
         Networking().getStackOverflowUsers { [weak self] (stackOverflowUsers, resultStatus) in
             guard let strongSelf = self else { return }
-            if let users = stackOverflowUsers as? [Users], users.count > 0 {
+            // If there are valid users and there are one or more users
+            if let users = stackOverflowUsers as? Users, users.items.count > 0 {
                 
             } else {
                 
