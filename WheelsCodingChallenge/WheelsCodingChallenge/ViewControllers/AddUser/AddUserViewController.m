@@ -10,6 +10,14 @@
 
 @interface AddUserViewController ()
 
+#pragma mark - Properties
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextField *reputationTextField;
+@property (weak, nonatomic) IBOutlet UITextField *displayNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *goldBadgeCountTextField;
+@property (weak, nonatomic) IBOutlet UITextField *silverBadgeCountTextField;
+@property (weak, nonatomic) IBOutlet UITextField *bronzeBadgeCountTextField;
+
 @end
 
 @implementation AddUserViewController
