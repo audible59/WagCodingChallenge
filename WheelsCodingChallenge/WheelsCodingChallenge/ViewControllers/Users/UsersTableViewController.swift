@@ -7,44 +7,71 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class UsersTableViewController: UITableViewController {
     
-    //MARK: - View Lifecycle
+    //MARK: - Properties
+    var stackOverflowUsers: Users?
     
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        self.setup()
+    }
+    
+    //MARK: - Setup
+    private func setup() {
+        self.fetchStackOverflowUsers()
+    }
+    
+    //MARK: - Networking
+    func fetchStackOverflowUsers() {
+        Networking().getStackOverflowUsers { [weak self] (stackOverflowUsers, resultStatus) in
+            guard let strongSelf = self else { return }
+            // If there are valid users and there are one or more users
+            if let users = stackOverflowUsers as? Users, users.items.count > 0 {
+                strongSelf.stackOverflowUsers = users
+                strongSelf.tableView.reloadData()
+            } else {
+                
+            }
+        }
     }
 
-    // MARK: - UITableView Data Source
-
+    //MARK: - UITableView Data Source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // If there are users available return the count otherwise we set the number of rows to 0
+        return self.stackOverflowUsers?.items.count ?? 0
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UsersIdentifier", for: indexPath) as! UsersTableViewCell
 
-        // Configure the cell...
+        if let user = self.stackOverflowUsers?.items[indexPath.row] {
+            if let reputation = user.reputation {
+                cell.userReputationLabel.text = String(reputation)
+            } else {
+                cell.userReputationLabel.text = "no rep"
+            }
+            cell.userNameLabel.text = user.displayName
+            cell.goldBadgeLabel.text = String(user.badgeCounts.gold)
+            cell.silverBadgeLabel.text = String(user.badgeCounts.silver)
+            cell.bronzeBadgeLabel.text = String(user.badgeCounts.bronze)
+            
+            Alamofire.request(user.profileImage).responseImage(completionHandler: { (response) in
+                print(response)
+                if let image = response.result.value {
+                    cell.userAvatarImage.image = image
+                }
+            })
+        }
 
         return cell
-    }
-    */
-
-    // MARK: - UIStoryboardSegue Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
 }

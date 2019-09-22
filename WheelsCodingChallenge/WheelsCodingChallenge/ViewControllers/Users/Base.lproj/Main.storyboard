@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk9-7C-WBP">
-                                <rect key="frame" x="0.0" y="172" width="453" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <connections>
                                     <segue destination="GHF-3H-gAK" kind="embed" id="Hmu-4m-gAG"/>
                                 </connections>
@@ -51,19 +51,19 @@
             <objects>
                 <tableViewController id="GHF-3H-gAK" customClass="UsersTableViewController" customModule="WheelsCodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jsr-Eo-RtM">
-                        <rect key="frame" x="0.0" y="0.0" width="453" height="774"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsersIdentifier" rowHeight="60" id="Qgz-Zb-gxb">
-                                <rect key="frame" x="0.0" y="28" width="453" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsersIdentifier" rowHeight="60" id="Qgz-Zb-gxb" customClass="UsersTableViewCell" customModule="WheelsCodingChallenge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qgz-Zb-gxb" id="7Aq-4P-jLN">
-                                    <rect key="frame" x="0.0" y="0.0" width="453" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sir Kevin E. Rafferty II, Viceroy of Anaheim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiP-mS-i0J" userLabel="Name Label">
-                                            <rect key="frame" x="63" y="8" width="370" height="21"/>
+                                            <rect key="frame" x="63" y="8" width="331" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -144,6 +144,17 @@
                                         <constraint firstItem="wFZ-bi-NAA" firstAttribute="top" secondItem="7Aq-4P-jLN" secondAttribute="top" constant="4" id="zdw-bY-GkT"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bronzeBadgeImage" destination="C45-8O-ysU" id="yly-Oc-2Cd"/>
+                                    <outlet property="bronzeBadgeLabel" destination="jAA-tb-yBF" id="ULd-Zh-E4q"/>
+                                    <outlet property="goldBadgeImage" destination="SgG-tc-XHi" id="8lQ-jK-zLN"/>
+                                    <outlet property="goldBadgeLabel" destination="JE6-Ws-0qp" id="6Z9-49-KL7"/>
+                                    <outlet property="silverBadgeImage" destination="Z15-i5-PVX" id="bZE-78-DlX"/>
+                                    <outlet property="silverBadgeLabel" destination="tyk-x1-Ohz" id="G0m-pm-7i4"/>
+                                    <outlet property="userAvatarImage" destination="wFZ-bi-NAA" id="1SX-W3-dog"/>
+                                    <outlet property="userNameLabel" destination="WiP-mS-i0J" id="jW1-gp-4jo"/>
+                                    <outlet property="userReputationLabel" destination="HoG-HU-jNT" id="XlA-0J-T7n"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

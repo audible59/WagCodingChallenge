@@ -25,8 +25,6 @@ class Networking: NSObject {
     let networkingQueue = DispatchQueue.global(qos: .background)
     
     //MARK: - GET Stack Overflow Users
-    
-    
     /// This method will retrieve a user list from the Stack Overflow API. Only the first page will be fetched.
     ///
     /// - Parameter completion: The completion handler to be called for success or failure. A decoded Users object
@@ -46,7 +44,6 @@ class Networking: NSObject {
                             do {
                                 let stackOverflowUsers = try JSONDecoder().decode(Users.self, from: data)
                                 print("Networking Line# \(#line) - Successfully retrieved the Stack Overflow users)")
-                                print(stackOverflowUsers)
                                 completion(stackOverflowUsers, .success)
                             } catch {
                                 print("Networking Line# \(#line) - There was an error decoding the Stack Overflow users: \(error.localizedDescription)")
@@ -59,5 +56,12 @@ class Networking: NSObject {
                     }
             }
         }
+    }
+    
+    //MARK: - GET Stack Overflow User Avatar Image
+    func getStackOverflowUserAvatarImage(completion: @escaping (Any?, ResultStatus) -> ()) {
+        
+        
+        
     }
 }

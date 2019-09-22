@@ -13,7 +13,6 @@ class UsersViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.fetchStackOverflowUsers()
     }
     
     //MARK: - IBAction Methods
@@ -21,15 +20,9 @@ class UsersViewController: UIViewController {
         //TODO: Open the Add User UIViewController
     }
     
-    func fetchStackOverflowUsers() {
-        Networking().getStackOverflowUsers { [weak self] (stackOverflowUsers, resultStatus) in
-            guard let strongSelf = self else { return }
-            // If there are valid users and there are one or more users
-            if let users = stackOverflowUsers as? Users, users.items.count > 0 {
-                
-            } else {
-                
-            }
-        }
+    // MARK: - UIStoryboardSegue Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
 }
