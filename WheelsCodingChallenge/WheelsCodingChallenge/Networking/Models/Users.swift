@@ -30,7 +30,7 @@ public struct Users: Decodable {
         let userType: String?
         let accountID: Int?
         let acceptRate: Int?
-        let reputation: Double?
+        let reputation: Int?
         let isEmployee: Bool?
         let websiteURL: String?
         let badgeCounts: BadgeCounts

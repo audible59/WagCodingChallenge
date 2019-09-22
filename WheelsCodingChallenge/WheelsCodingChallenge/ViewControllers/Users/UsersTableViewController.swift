@@ -64,12 +64,8 @@ class UsersTableViewController: UITableViewController {
             cell.silverBadgeLabel.text = String(user.badgeCounts.silver)
             cell.bronzeBadgeLabel.text = String(user.badgeCounts.bronze)
             
-            Alamofire.request(user.profileImage).responseImage(completionHandler: { (response) in
-                print(response)
-                if let image = response.result.value {
-                    cell.userAvatarImage.image = image
-                }
-            })
+            let url = URL(string: user.profileImage)!
+            cell.userAvatarImage.af_setImage(withURL: url)
         }
 
         return cell
