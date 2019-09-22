@@ -56,6 +56,7 @@
     self.silverBadgeCountTextField.delegate = self;
     self.bronzeBadgeCountTextField.delegate = self;
     
+    // A Toolbar with a Done UIBarButtonITem is added to the UITextFields that present a Number Pad to the user
     UIToolbar *keyboardToolbar = [[UIToolbar alloc] init];
     [keyboardToolbar sizeToFit];
     
@@ -75,7 +76,7 @@
 #pragma mark - IBAction Methods
 
 - (IBAction)onAddUserButtonPressed:(id)sender {
-    NSLog(@"Add User");
+    NSLog(@"Attempting to add a new user...");
     if ([self checkUserSelections]) {
         //TODO: Add the new user to the User List
     }
@@ -105,14 +106,14 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
-    
-//    // Scroll to the active UITextField so that it is visible
-//    CGRect aRect = self.view.frame;
-//    aRect.size.height -= keyboardSize.height;
-//    if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin)) {
-//        CGPoint scrollToPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - keyboardSize.height);
-//        [self.scrollView setContentOffset:scrollToPoint animated:YES];
-//    }
+
+    // Scroll to the active UITextField so that it is visible
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= keyboardSize.height;
+    if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin)) {
+        CGPoint scrollToPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - keyboardSize.height);
+        [self.scrollView setContentOffset:scrollToPoint animated:YES];
+    }
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
@@ -155,7 +156,7 @@
         NSInteger reputation = [self.reputationTextField.text integerValue];
         
         // If the reputation value is not an odd number
-        if (!(reputation % 2)) {
+        if ((reputation % 2) == 0) {
             [self presentAlertViewWithTitle:@"Incorrect Reputation"
                                     message:@"Please enter a valid Reputation value that is an odd number."];
             return NO;
@@ -169,7 +170,7 @@
         NSInteger goldBadgeCount = [self.goldBadgeCountTextField.text integerValue];
         
         // If the Gold Badge Count value is not a multiple of three
-        if (!(goldBadgeCount % 3)) {
+        if ((goldBadgeCount % 3) != 0) {
             [self presentAlertViewWithTitle:@"Incorrect Gold Badge Count"
                                     message:@"Please enter a Gold Badge Count value that is a multiple of 3."];
             return NO;
@@ -183,7 +184,7 @@
         NSInteger silverBadgeCount = [self.silverBadgeCountTextField.text integerValue];
         
         // If the Silver Badge Count value is not a multiple of three
-        if (!(silverBadgeCount % 3)) {
+        if ((silverBadgeCount % 3) != 0) {
             [self presentAlertViewWithTitle:@"Incorrect Silver Badge Count"
                                     message:@"Please enter a valid Silver Badge Count value that is a multiple of 3."];
             return NO;
@@ -197,7 +198,7 @@
         NSInteger bronzeBadgeCount = [self.bronzeBadgeCountTextField.text integerValue];
         
         // If the Bronze Badge Count value is not a multiple of three
-        if (!(bronzeBadgeCount % 3)) {
+        if ((bronzeBadgeCount % 3) != 0) {
             [self presentAlertViewWithTitle:@"Incorrect Bronze Badge Count"
                                     message:@"Please enter a valid Bronze Badge Count value that is a multiple of 3."];
             return NO;
@@ -224,10 +225,7 @@
     }];
     
     [alertController addAction:defaultAction];
-    
-    [self presentViewController:alertController
-                       animated:YES
-                     completion:nil];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 /*
