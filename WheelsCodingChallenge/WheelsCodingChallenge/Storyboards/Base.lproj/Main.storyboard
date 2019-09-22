@@ -67,9 +67,12 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onAddUserButtonPressed:" destination="lC8-Nf-6w9" eventType="touchUpInside" id="tYP-4z-bCG"/>
+                                </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2to-QI-6Qc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="666"/>
@@ -327,7 +330,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hbf-cM-ruh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021.0144927536232" y="136.60714285714286"/>
+            <point key="canvasLocation" x="2019" y="155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ISf-Rx-5Nq">

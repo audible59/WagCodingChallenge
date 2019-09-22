@@ -192,6 +192,7 @@
 		3646A3832335ABE500429C76 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				3646A3542335AAAE00429C76 /* Main.storyboard */,
 				3646A35C2335AAAE00429C76 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -214,7 +215,6 @@
 				3646A3522335AAAE00429C76 /* UsersViewController.swift */,
 				3687DABE2336E83A00C1505C /* UsersTableViewCell.swift */,
 				3687DABA233662FB00C1505C /* UsersTableViewController.swift */,
-				3646A3542335AAAE00429C76 /* Main.storyboard */,
 			);
 			path = Users;
 			sourceTree = "<group>";
