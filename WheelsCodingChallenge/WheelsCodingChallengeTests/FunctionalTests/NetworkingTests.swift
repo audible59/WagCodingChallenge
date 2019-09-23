@@ -10,17 +10,18 @@ import XCTest
 import OHHTTPStubs
 @testable import WheelsCodingChallenge
 
-class WheelsCodingChallengeTests: XCTestCase {
+class NetworkingTests: XCTestCase {
     
     //MARK: - Properties
     var host: String!
     var path: String!
     var stubbedJSON: [String : Any]!
-
+    
+    //MARK: - Testing Lifecycle
     override func setUp() {
         super.setUp()
     }
-
+    
     override func tearDown() {
         self.host = ""
         self.path = ""
@@ -28,7 +29,8 @@ class WheelsCodingChallengeTests: XCTestCase {
         OHHTTPStubs.removeAllStubs()
         super.tearDown()
     }
-
+    
+    //MARK: - Networking Tests
     func testRetrievingStackOverflowUsers() {
         self.host = "api.stackexchange.com"
         self.path = "/2.2/users?site=stackoverflow"

@@ -12,9 +12,10 @@
 
 #pragma mark - Properties
 
+@property (assign, nonatomic) CGPoint lastScrollViewOffset;
+
 @property (strong, nonatomic) UITextField *activeTextField;
 
-@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *reputationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *displayNameTextField;
@@ -43,14 +44,14 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     CGRect convertedFrameToWindow = [self.bronzeBadgeCountTextField convertRect:self.bronzeBadgeCountTextField.frame toView:nil];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, convertedFrameToWindow.origin.y + 120);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, convertedFrameToWindow.origin.y + 150);
 }
 
 #pragma mark - Setup
 
 - (void)setupView {
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dissmissKeyboard)];
-    tapGestureRecognizer.cancelsTouchesInView = NO;
+//    tapGestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
@@ -138,20 +139,35 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    [self.scrollView setContentOffset: self.lastScrollViewOffset];
 }
 
 #pragma mark - UITextField Delegates
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     self.activeTextField = textField;
+    self.lastScrollViewOffset = self.scrollView.contentOffset;
+    return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//
+//}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
     self.activeTextField = nil;
+    return YES;
 }
+
+//- (void)textFieldDidEndEditing:(UITextField *)textField {
+//
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    self.activeTextField = nil;
     return YES;
 }
 
