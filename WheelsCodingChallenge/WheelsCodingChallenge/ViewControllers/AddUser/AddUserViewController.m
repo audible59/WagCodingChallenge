@@ -89,7 +89,6 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupView];
     [self setupTextFields];
     [self setupKeyboardNotifications];
 }
@@ -106,28 +105,20 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
-    if (self.didSetupScrollView == NO) {
-        CGRect convertedFrameToWindow = [self.bronzeBadgeCountTextField convertRect:self.bronzeBadgeCountTextField.frame toView:nil];
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, convertedFrameToWindow.origin.y + 150);
-        self.didSetupScrollView = YES;
-    }
+    [self setupView];
 }
 
 #pragma mark - Setup
 
 - (void)setupView {
-//    CGRect convertedFrameToWindow = [self.bronzeBadgeCountTextField convertRect:self.bronzeBadgeCountTextField.frame toView:nil];
-//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, convertedFrameToWindow.origin.y + 250);
-    
-//    float sizeOfContent = 0;
-//    UIView *lLast = [self.scrollView.subviews lastObject];
-//    NSInteger wd = lLast.frame.origin.y;
-//    NSInteger ht = lLast.frame.size.height;
-//
-//    sizeOfContent = wd+ht;
-//
-//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.view.frame.size.height * 2.5);
+    // Because we are using Auto Layout wee need to set the UIScrollView's content size within viewDidLayoutSubviews
+    dispatch_async(dispatch_get_main_queue(), ^ {
+        CGRect contentRect = CGRectZero;
+        
+        for(UIView *view in self.scrollView.subviews)
+        contentRect = CGRectUnion(contentRect,view.frame);
+        self.scrollView.contentSize = contentRect.size;
+    });
 }
 
 - (void)setupTextFields {
