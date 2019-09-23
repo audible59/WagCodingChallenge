@@ -14,15 +14,4 @@ class UsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    //MARK: - IBAction Methods
-    @IBAction func onAddUserBarButtonItemPressed(_ sender: Any) {
-        
-    }
-    
-    // MARK: - UIStoryboardSegue Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
 }

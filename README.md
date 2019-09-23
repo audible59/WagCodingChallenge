@@ -1,13 +1,13 @@
 # WheelsCodingChallenge
 Biking awesomeness
 
-Once this project has been cloned or downloaded please run `pod install` within the same sirectory as the `WheelsCodingChallenge.xcodeproj` file. Once completed ensure that Xcode has been closed down and the open up the newly created `WheelsCodingChallenge.xcworkspace`.
+Once this project has been cloned or downloaded please run `pod install` within the same directory as the `WheelsCodingChallenge.xcodeproj` file. Once completed, ensure that Xcode has been closed down and then open up the newly created `WheelsCodingChallenge.xcworkspace`.
 
 ## iOS Supported Devices
-Since there were no specifications for which iOS devices need to be supported, this project supports iOS devices iPhone 8/iPhone 8 Plus and above.
+Since there were no specifications for which iOS devices were to be supported, this project supports iOS devices iPhone 8/iPhone 8 Plus and above.
 
 ## Functional Tests
-XCUITest was used for code coverage around the Networking API as well as the user selection business logic. To run these Unit Tests you can hit the play button within the Test Navigator or long press the Run button and select the option Test to run all tests.
+XCUITest was used for code coverage around the Networking API as well as the add user business logic. To run these Unit Tests you can hit the play button within the Test Navigator or long press the Run button and select the option Test to run all tests.
 
 ## Networking
 AlamoFire was used because it also comes with AlamoFireImage for image caching.

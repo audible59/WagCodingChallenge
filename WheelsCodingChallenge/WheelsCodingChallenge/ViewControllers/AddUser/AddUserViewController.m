@@ -8,6 +8,55 @@
 
 #import "AddUserViewController.h"
 
+// User Info Constants
+static NSString * const reputationInfo = @"reputation";
+static NSString * const displayNameInfo = @"displayName";
+static NSString * const goldBadgeCountInfo = @"goldBadgeCount";
+static NSString * const silverBadgeCountInfo = @"silverBadgeCount";
+static NSString * const bronzeBadgeCountInfo = @"bronzeBadgeCount";
+
+// NSNotification Name Constant
+static NSString * const addNewUserNotificationName = @"AddNewUserToTableView";
+
+// Reputation UIAlertController Constants
+static NSString * const reputationAlertViewMessage = @"Please enter a valid Reputation value that is an odd number.";
+static NSString * const missingReputationAlertViewTitle = @"Missing Reputation";
+static NSString * const incorrectReputationAlertViewTitle = @"Incorrect Reputation";
+
+static NSString * const maximumReputationAlertViewTitle = @"Reputation Limit";
+static NSString * const maximumReputationAlertViewMessage = @"Please enter a Reputation that is less than 8 characters";
+
+// Display Name UIAlertController Constants
+static NSString * const missingDisplayNameAlertViewTitle = @"Missing Display Name";
+static NSString * const missingDisplayNameAlertViewMessage = @"Please enter a valid Display Name.";
+
+static NSString * const maximumDisplayNameAlertViewTitile = @"Display Name Limit";
+static NSString * const maximumDisplayNameAlertViewMessage = @"Please enter a Display Name that is less than 25 characters.";
+
+// Gold Badge Count UIAlertController Constants
+static NSString * const goldBadgeCountAlertViewMessage = @"Please enter a valid Gold Badge Count value that is a multiple of 3.";
+static NSString * const missingGoldBadgeCountAlertViewTitle = @"Missing Gold Badge Count";
+static NSString * const incorrectGoldBadgeCountAlertViewTitle = @"Incorrect Gold Badge Count";
+
+static NSString * const maximumGoldBadgeCountAlertViewTitile = @"Gold Badge Count Limit";
+static NSString * const maximumGoldBadgeCountAlertViewMessage = @"Please enter a Gold Badge Count that is less than 5 characters.";
+
+// Silver Badge Count UIAlertController Constants
+static NSString * const silverBadgeCountAlertViewMessage = @"Please enter a valid Silver Badge Count value that is a multiple of 3.";
+static NSString * const missingSilverBadgeCountAlertViewTitle = @"Missing Silver Badge Count";
+static NSString * const incorrectSilverBadgeCountAlertViewTitle = @"Incorrect Silver Badge Count";
+
+static NSString * const maximumSilverBadgeCountAlertViewTitile = @"Silver Badge Count Limit";
+static NSString * const maximumSilverBadgeCountAlertViewMessage = @"Please enter a Silver Badge Count that is less than 5 characters.";
+
+// Bronze Badge Count UIAlertController Constants
+static NSString * const bronzeBadgeCountAlertViewMessage = @"Please enter a valid Bronze Badge Count value that is a multiple of 3.";
+static NSString * const missingBronzeBadgeCountAlertViewTitle = @"Missing Bronze Badge Count";
+static NSString * const incorrectBronzeBadgeCountAlertViewTitle = @"Incorrect Bronze Badge Count";
+
+static NSString * const maximumBronzeBadgeCountAlertViewTitile = @"Bronze Badge Count Limit";
+static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter a Bronze Badge Count that is less than 5 characters.";
+
 @interface AddUserViewController () <UITextFieldDelegate>
 
 #pragma mark - Properties
@@ -15,6 +64,8 @@
 @property (assign, nonatomic) CGPoint lastScrollViewOffset;
 
 @property (strong, nonatomic) UITextField *activeTextField;
+
+#pragma mark - IBOutlet Properties
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *reputationTextField;
@@ -62,7 +113,7 @@
     self.silverBadgeCountTextField.delegate = self;
     self.bronzeBadgeCountTextField.delegate = self;
     
-    // A Toolbar with a Done UIBarButtonITem is added to the UITextFields that present a Number Pad to the user
+    // A Toolbar with a Done UIBarButtonITem is only added to the UITextFields that present a Number Pad to the user
     UIToolbar *keyboardToolbar = [[UIToolbar alloc] init];
     [keyboardToolbar sizeToFit];
     
@@ -81,7 +132,7 @@
 
 - (void)setupKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
+                                             selector:@selector(keyboardWillBeShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
@@ -97,16 +148,18 @@
                       goldBadgeCount:self.goldBadgeCountTextField.text
                     silverBadgeCount:self.silverBadgeCountTextField.text
                     bronzeBadgeCount:self.bronzeBadgeCountTextField.text]) {
-        NSDictionary *userInfo = @{ @"reputation" : self.reputationTextField.text,
-                                    @"displayName" : self.displayNameTextField.text,
-                                    @"goldBadgeCount" : self.goldBadgeCountTextField.text,
-                                    @"silverBadgeCount" : self.silverBadgeCountTextField.text,
-                                    @"bronzeBadgeCount" : self.bronzeBadgeCountTextField.text };
+        // Setup the data to be passed into the notification post
+        NSDictionary *userInfo = @{ reputationInfo : self.reputationTextField.text,
+                                    displayNameInfo : self.displayNameTextField.text,
+                                    goldBadgeCountInfo : self.goldBadgeCountTextField.text,
+                                    silverBadgeCountInfo : self.silverBadgeCountTextField.text,
+                                    bronzeBadgeCountInfo : self.bronzeBadgeCountTextField.text };
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"AddNewUserToTableView"
+        [[NSNotificationCenter defaultCenter] postNotificationName:addNewUserNotificationName
                                                              object:nil
                                                            userInfo:userInfo];
         
+        // Dismiss this UIViewController and go back to the Stack Overflow Users List
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -117,8 +170,7 @@
     [self.view endEditing:YES];
 }
 
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification *)notification {
+- (void)keyboardWillBeShown:(NSNotification *)notification {
     NSDictionary *info = [notification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
@@ -134,8 +186,8 @@
     }
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification *)aNotification {
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
@@ -151,19 +203,11 @@
     return YES;
 }
 
-//- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//
-//}
-
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     [textField resignFirstResponder];
     self.activeTextField = nil;
     return YES;
 }
-
-//- (void)textFieldDidEndEditing:(UITextField *)textField {
-//
-//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -184,65 +228,104 @@
                 goldBadgeCount:(NSString *)goldBadgeCount
               silverBadgeCount:(NSString *)silverBadgeCount
               bronzeBadgeCount:(NSString *)bronzeBadgeCount {
+    // If the display name text field is not empty
     if ([displayName length] == 0) {
-        [self presentAlertViewWithTitle:@"Missing Display Name"
-                                message:@"Please enter a valid Display Name."];
+        [self presentAlertViewWithTitle:missingDisplayNameAlertViewTitle
+                                message:missingDisplayNameAlertViewMessage];
+        return NO;
+        
+      // Else if the display name is greater than 30 characters
+    } else if ([displayName length] > 25) {
+        [self presentAlertViewWithTitle:maximumDisplayNameAlertViewTitile
+                                message:maximumDisplayNameAlertViewMessage];
         return NO;
     }
+    // If the reputation text field is not empty
     if ([reputation length] != 0) {
+        // If the Reputation text field is greater than 7 characters
+        if ([reputation length] > 7) {
+            [self presentAlertViewWithTitle:maximumReputationAlertViewTitle
+                                    message:maximumReputationAlertViewMessage];
+            return NO;
+        }
+        
         NSInteger reputationInt = [reputation integerValue];
         
         // If the reputation value is not an odd number
         if ((reputationInt % 2) == 0) {
-            [self presentAlertViewWithTitle:@"Incorrect Reputation"
-                                    message:@"Please enter a valid Reputation value that is an odd number."];
+            [self presentAlertViewWithTitle:incorrectReputationAlertViewTitle
+                                    message:reputationAlertViewMessage];
             return NO;
         }
     } else {
-        [self presentAlertViewWithTitle:@"Missing Reputation"
-                                message:@"Please enter a valid Reputation value that is an odd number."];
+        [self presentAlertViewWithTitle:missingReputationAlertViewTitle
+                                message:reputationAlertViewMessage];
         return NO;
     }
+    // If the gold badge count text field is not empty
     if ([goldBadgeCount length] != 0) {
+        // If the Gold Badge Count text field is greater than 4 characters
+        if ([goldBadgeCount length] > 4) {
+            [self presentAlertViewWithTitle:maximumGoldBadgeCountAlertViewTitile
+                                    message:maximumGoldBadgeCountAlertViewMessage];
+            return NO;
+        }
+        
         NSInteger goldBadgeCountInt = [goldBadgeCount integerValue];
         
         // If the Gold Badge Count value is not a multiple of three
         if ((goldBadgeCountInt % 3) != 0) {
-            [self presentAlertViewWithTitle:@"Incorrect Gold Badge Count"
-                                    message:@"Please enter a Gold Badge Count value that is a multiple of 3."];
+            [self presentAlertViewWithTitle:incorrectGoldBadgeCountAlertViewTitle
+                                    message:goldBadgeCountAlertViewMessage];
             return NO;
         }
     } else {
-        [self presentAlertViewWithTitle:@"Missing Gold Badge Count"
-                                message:@"Please enter a valid Gold Badge Count value that is a multiple of 3."];
+        [self presentAlertViewWithTitle:missingGoldBadgeCountAlertViewTitle
+                                message:goldBadgeCountAlertViewMessage];
         return NO;
     }
+    // If the silver badge count text field is not empty
     if ([silverBadgeCount length] != 0) {
+        // If the Silver Badge Count text field is greater than 4 characters
+        if ([silverBadgeCount length] > 4) {
+            [self presentAlertViewWithTitle:maximumSilverBadgeCountAlertViewTitile
+                                    message:maximumSilverBadgeCountAlertViewMessage];
+            return NO;
+        }
+        
         NSInteger silverBadgeCountInt = [silverBadgeCount integerValue];
         
         // If the Silver Badge Count value is not a multiple of three
         if ((silverBadgeCountInt % 3) != 0) {
-            [self presentAlertViewWithTitle:@"Incorrect Silver Badge Count"
-                                    message:@"Please enter a valid Silver Badge Count value that is a multiple of 3."];
+            [self presentAlertViewWithTitle:incorrectSilverBadgeCountAlertViewTitle
+                                    message:silverBadgeCountAlertViewMessage];
             return NO;
         }
     } else {
-        [self presentAlertViewWithTitle:@"Missing Silver Badge Count"
-                                message:@"Please enter a valid Silver Badge Count value that is a multiple of 3."];
+        [self presentAlertViewWithTitle:missingSilverBadgeCountAlertViewTitle
+                                message:silverBadgeCountAlertViewMessage];
         return NO;
     }
+    // If the bronze badge count text field is not empty
     if ([bronzeBadgeCount length] != 0) {
+        // If the Bronze Badge Count text field is greater than 4 characters
+        if ([bronzeBadgeCount length] > 4) {
+            [self presentAlertViewWithTitle:maximumBronzeBadgeCountAlertViewTitile
+                                    message:maximumBronzeBadgeCountAlertViewMessage];
+            return NO;
+        }
+        
         NSInteger bronzeBadgeCountInt = [bronzeBadgeCount integerValue];
         
         // If the Bronze Badge Count value is not a multiple of three
         if ((bronzeBadgeCountInt % 3) != 0) {
-            [self presentAlertViewWithTitle:@"Incorrect Bronze Badge Count"
-                                    message:@"Please enter a valid Bronze Badge Count value that is a multiple of 3."];
+            [self presentAlertViewWithTitle:incorrectBronzeBadgeCountAlertViewTitle
+                                    message:bronzeBadgeCountAlertViewMessage];
             return NO;
         }
     } else {
-        [self presentAlertViewWithTitle:@"Missing Bronze Badge Count"
-                                message:@"Please enter a valid Bronze Badge Count value that is a multiple of 3."];
+        [self presentAlertViewWithTitle:missingBronzeBadgeCountAlertViewTitle
+                                message:bronzeBadgeCountAlertViewMessage];
         return NO;
     }
     
@@ -264,15 +347,5 @@
     [alertController addAction:defaultAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

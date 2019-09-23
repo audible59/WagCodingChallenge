@@ -22,6 +22,7 @@ class AddUserTests: XCTestCase {
         super.tearDown()
     }
     
+    //MARK: - User Selections are Successfull
     func testCheckingUserSelectionsIsSuccessful() {
         let isSuccessful = AddUserViewController().checkUserSelections(for: "1234567",
                                                                        displayName: "Totes",
@@ -32,6 +33,7 @@ class AddUserTests: XCTestCase {
         XCTAssertTrue(isSuccessful, "We expected the user selections to be correct.")
     }
     
+    //MARK: - Blank User Selections
     func testCheckingUserSelectionsIsUnsuccessfulWithBlankReputation() {
         let isSuccessful = AddUserViewController().checkUserSelections(for: "",
                                                                        displayName: "Totes",
@@ -82,6 +84,7 @@ class AddUserTests: XCTestCase {
         XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
     }
     
+    //MARK: - Even Reputation Selection
     func testCheckingUserSelectionsIsUnsuccessfulWithEvenReputation() {
         let isSuccessful = AddUserViewController().checkUserSelections(for: "222222",
                                                                        displayName: "Totes",
@@ -92,6 +95,7 @@ class AddUserTests: XCTestCase {
         XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
     }
     
+    //MARK: - Non Multiple of Three Badge Count Selections
     func testCheckingUserSelectionsIsUnsuccessfulWithGoldBadgeCountNotBeingAMultipleOfThree() {
         let isSuccessful = AddUserViewController().checkUserSelections(for: "222222",
                                                                        displayName: "Totes",
@@ -118,6 +122,57 @@ class AddUserTests: XCTestCase {
                                                                        goldBadgeCount: "9999",
                                                                        silverBadgeCount: "9999",
                                                                        bronzeBadgeCount: "1234")
+        
+        XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
+    }
+    
+    //MARK: - Selections Exceeds Character MAX
+    func testCheckingUserSelectionsIsUnsuccessfulWithMaxExceededReputation() {
+        let isSuccessful = AddUserViewController().checkUserSelections(for: "12345678",
+                                                                       displayName: "Totes",
+                                                                       goldBadgeCount: "9999",
+                                                                       silverBadgeCount: "9999",
+                                                                       bronzeBadgeCount: "9999")
+        
+        XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
+    }
+    
+    func testCheckingUserSelectionsIsUnsuccessfulWithMaxExceededDisplayName() {
+        let isSuccessful = AddUserViewController().checkUserSelections(for: "1234567",
+                                                                       displayName: "123456789012345678901234567890",
+                                                                       goldBadgeCount: "9999",
+                                                                       silverBadgeCount: "9999",
+                                                                       bronzeBadgeCount: "9999")
+        
+        XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
+    }
+    
+    func testCheckingUserSelectionsIsUnsuccessfulWithMaxExceededGoldBadgeCount() {
+        let isSuccessful = AddUserViewController().checkUserSelections(for: "1234567",
+                                                                       displayName: "Totes",
+                                                                       goldBadgeCount: "12345",
+                                                                       silverBadgeCount: "9999",
+                                                                       bronzeBadgeCount: "9999")
+        
+        XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
+    }
+    
+    func testCheckingUserSelectionsIsUnsuccessfulWithMaxExceededSilverBadgeCount() {
+        let isSuccessful = AddUserViewController().checkUserSelections(for: "1234567",
+                                                                       displayName: "Totes",
+                                                                       goldBadgeCount: "9999",
+                                                                       silverBadgeCount: "12345",
+                                                                       bronzeBadgeCount: "9999")
+        
+        XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
+    }
+    
+    func testCheckingUserSelectionsIsUnsuccessfulWithMaxExceededBronzeBadgeCount() {
+        let isSuccessful = AddUserViewController().checkUserSelections(for: "1234567",
+                                                                       displayName: "Totes",
+                                                                       goldBadgeCount: "9999",
+                                                                       silverBadgeCount: "9999",
+                                                                       bronzeBadgeCount: "12345")
         
         XCTAssertFalse(isSuccessful, "We expected the user selections to be correct.")
     }

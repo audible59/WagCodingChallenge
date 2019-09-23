@@ -9,6 +9,12 @@
 import UIKit
 import Alamofire
 
+
+/// This enum is used within the callback of each networking method to allow the UI
+/// to be responsive if a networking error were to be received.
+///
+/// - error: This status is returned when a networking error is received.
+/// - success: This status is returned when the networking call is successful.
 enum ResultStatus {
     case error
     case success
@@ -16,7 +22,7 @@ enum ResultStatus {
 
 class Networking: NSObject {
     
-    //MARK: - Properties
+    //MARK: - Local Constants
     struct Constants {
         static let stackOverflowURL: String = "https://api.stackexchange.com/2.2/users?site=stackoverflow"
     }
@@ -56,12 +62,5 @@ class Networking: NSObject {
                     }
             }
         }
-    }
-    
-    //MARK: - GET Stack Overflow User Avatar Image
-    func getStackOverflowUserAvatarImage(completion: @escaping (Any?, ResultStatus) -> ()) {
-        
-        
-        
     }
 }
