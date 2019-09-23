@@ -17,7 +17,7 @@ class UsersViewController: UIViewController {
     
     //MARK: - IBAction Methods
     @IBAction func onAddUserBarButtonItemPressed(_ sender: Any) {
-        //TODO: Open the Add User UIViewController
+        
     }
     
     // MARK: - UIStoryboardSegue Navigation

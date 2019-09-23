@@ -183,8 +183,8 @@
 		3646A3822335ABCC00429C76 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3687DAC023370E1E00C1505C /* AddUser */,
 				3687DAB9233662DA00C1505C /* Users */,
+				3687DAC023370E1E00C1505C /* AddUser */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

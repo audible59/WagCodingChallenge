@@ -32,7 +32,12 @@
     [super viewDidLoad];
     [self setupView];
     [self setupTextFields];
-    [self registerForKeyboardNotifications];
+    [self setupKeyboardNotifications];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -73,24 +78,36 @@
     self.bronzeBadgeCountTextField.inputAccessoryView = keyboardToolbar;
 }
 
-#pragma mark - IBAction Methods
-
-- (IBAction)onAddUserButtonPressed:(id)sender {
-    NSLog(@"Attempting to add a new user...");
-    if ([self checkUserSelections]) {
-        //TODO: Add the new user to the User List
-    }
-}
-
-#pragma mark - UIKeyboard Notifications
-
-- (void)registerForKeyboardNotifications {
+- (void)setupKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
+}
+
+#pragma mark - IBAction Methods
+
+- (IBAction)onAddUserButtonPressed:(id)sender {
+    NSLog(@"Attempting to add a new user...");
+    if ([self checkUserSelectionsFor:self.reputationTextField.text
+                         displayName:self.displayNameTextField.text
+                      goldBadgeCount:self.goldBadgeCountTextField.text
+                    silverBadgeCount:self.silverBadgeCountTextField.text
+                    bronzeBadgeCount:self.bronzeBadgeCountTextField.text]) {
+        NSDictionary *userInfo = @{ @"reputation" : self.reputationTextField.text,
+                                    @"displayName" : self.displayNameTextField.text,
+                                    @"goldBadgeCount" : self.goldBadgeCountTextField.text,
+                                    @"silverBadgeCount" : self.silverBadgeCountTextField.text,
+                                    @"bronzeBadgeCount" : self.bronzeBadgeCountTextField.text };
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AddNewUserToTableView"
+                                                             object:nil
+                                                           userInfo:userInfo];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - UIKeyboard Selector Methods
@@ -146,17 +163,21 @@
 
 #pragma mark - Helper Methods
 
-- (BOOL)checkUserSelections {
-    if ([self.displayNameTextField.text length] == 0) {
+- (BOOL)checkUserSelectionsFor:(NSString *)reputation
+                   displayName:(NSString *)displayName
+                goldBadgeCount:(NSString *)goldBadgeCount
+              silverBadgeCount:(NSString *)silverBadgeCount
+              bronzeBadgeCount:(NSString *)bronzeBadgeCount {
+    if ([displayName length] == 0) {
         [self presentAlertViewWithTitle:@"Missing Display Name"
                                 message:@"Please enter a valid Display Name."];
         return NO;
     }
-    if ([self.reputationTextField.text length] != 0) {
-        NSInteger reputation = [self.reputationTextField.text integerValue];
+    if ([reputation length] != 0) {
+        NSInteger reputationInt = [reputation integerValue];
         
         // If the reputation value is not an odd number
-        if ((reputation % 2) == 0) {
+        if ((reputationInt % 2) == 0) {
             [self presentAlertViewWithTitle:@"Incorrect Reputation"
                                     message:@"Please enter a valid Reputation value that is an odd number."];
             return NO;
@@ -166,11 +187,11 @@
                                 message:@"Please enter a valid Reputation value that is an odd number."];
         return NO;
     }
-    if ([self.goldBadgeCountTextField.text length] != 0) {
-        NSInteger goldBadgeCount = [self.goldBadgeCountTextField.text integerValue];
+    if ([goldBadgeCount length] != 0) {
+        NSInteger goldBadgeCountInt = [goldBadgeCount integerValue];
         
         // If the Gold Badge Count value is not a multiple of three
-        if ((goldBadgeCount % 3) != 0) {
+        if ((goldBadgeCountInt % 3) != 0) {
             [self presentAlertViewWithTitle:@"Incorrect Gold Badge Count"
                                     message:@"Please enter a Gold Badge Count value that is a multiple of 3."];
             return NO;
@@ -180,11 +201,11 @@
                                 message:@"Please enter a valid Gold Badge Count value that is a multiple of 3."];
         return NO;
     }
-    if ([self.silverBadgeCountTextField.text length] != 0) {
-        NSInteger silverBadgeCount = [self.silverBadgeCountTextField.text integerValue];
+    if ([silverBadgeCount length] != 0) {
+        NSInteger silverBadgeCountInt = [silverBadgeCount integerValue];
         
         // If the Silver Badge Count value is not a multiple of three
-        if ((silverBadgeCount % 3) != 0) {
+        if ((silverBadgeCountInt % 3) != 0) {
             [self presentAlertViewWithTitle:@"Incorrect Silver Badge Count"
                                     message:@"Please enter a valid Silver Badge Count value that is a multiple of 3."];
             return NO;
@@ -194,11 +215,11 @@
                                 message:@"Please enter a valid Silver Badge Count value that is a multiple of 3."];
         return NO;
     }
-    if ([self.bronzeBadgeCountTextField.text length] != 0) {
-        NSInteger bronzeBadgeCount = [self.bronzeBadgeCountTextField.text integerValue];
+    if ([bronzeBadgeCount length] != 0) {
+        NSInteger bronzeBadgeCountInt = [bronzeBadgeCount integerValue];
         
         // If the Bronze Badge Count value is not a multiple of three
-        if ((bronzeBadgeCount % 3) != 0) {
+        if ((bronzeBadgeCountInt % 3) != 0) {
             [self presentAlertViewWithTitle:@"Incorrect Bronze Badge Count"
                                     message:@"Please enter a valid Bronze Badge Count value that is a multiple of 3."];
             return NO;
