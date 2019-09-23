@@ -68,7 +68,7 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
 
 #pragma mark - Properties
 
-@property (assign, nonatomic) CGPoint lastScrollViewOffset;
+@property (nonatomic, assign) BOOL didSetupScrollView;
 
 @property (strong, nonatomic) UITextField *activeTextField;
 
@@ -94,6 +94,11 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
     [self setupKeyboardNotifications];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    self.didSetupScrollView = NO;
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -101,16 +106,28 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGRect convertedFrameToWindow = [self.bronzeBadgeCountTextField convertRect:self.bronzeBadgeCountTextField.frame toView:nil];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, convertedFrameToWindow.origin.y + 150);
+    
+    if (self.didSetupScrollView == NO) {
+        CGRect convertedFrameToWindow = [self.bronzeBadgeCountTextField convertRect:self.bronzeBadgeCountTextField.frame toView:nil];
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, convertedFrameToWindow.origin.y + 150);
+        self.didSetupScrollView = YES;
+    }
 }
 
 #pragma mark - Setup
 
 - (void)setupView {
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dissmissKeyboard)];
-//    tapGestureRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+//    CGRect convertedFrameToWindow = [self.bronzeBadgeCountTextField convertRect:self.bronzeBadgeCountTextField.frame toView:nil];
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, convertedFrameToWindow.origin.y + 250);
+    
+//    float sizeOfContent = 0;
+//    UIView *lLast = [self.scrollView.subviews lastObject];
+//    NSInteger wd = lLast.frame.origin.y;
+//    NSInteger ht = lLast.frame.size.height;
+//
+//    sizeOfContent = wd+ht;
+//
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.view.frame.size.height * 2.5);
 }
 
 - (void)setupTextFields {
@@ -178,8 +195,8 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
 }
 
 - (void)keyboardWillBeShown:(NSNotification *)notification {
-    NSDictionary *info = [notification userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    NSDictionary *userInfo = [notification userInfo];
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
@@ -193,20 +210,16 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
     }
 }
 
-
 - (void)keyboardWillBeHidden:(NSNotification *)notification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
-    
-    [self.scrollView setContentOffset: self.lastScrollViewOffset];
 }
 
 #pragma mark - UITextField Delegates
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     self.activeTextField = textField;
-    self.lastScrollViewOffset = self.scrollView.contentOffset;
     return YES;
 }
 
@@ -220,12 +233,6 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
     [textField resignFirstResponder];
     self.activeTextField = nil;
     return YES;
-}
-
-#pragma mark - UITouch Methods
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
 }
 
 #pragma mark - Helper Methods
