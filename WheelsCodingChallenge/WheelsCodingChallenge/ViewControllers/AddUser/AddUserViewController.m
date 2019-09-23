@@ -8,6 +8,13 @@
 
 #import "AddUserViewController.h"
 
+// Character Limit Constanst
+static const int MAX_REPUTATION_CHARACTER_LIMIT = 7;
+static const int MAX_DISPLAY_NAME_CHARACTER_LIMIT = 25;
+static const int MAX_GOLD_BADGE_COUNT_CHARACTER_LIMIT = 4;
+static const int MAX_SILVER_BADGE_COUNT_CHARACTER_LIMIT = 4;
+static const int MAX_BRONZE_BADGE_COUNT_CHARACTER_LIMIT = 4;
+
 // User Info Constants
 static NSString * const reputationInfo = @"reputation";
 static NSString * const displayNameInfo = @"displayName";
@@ -235,7 +242,7 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
         return NO;
         
       // Else if the display name is greater than 30 characters
-    } else if ([displayName length] > 25) {
+    } else if ([displayName length] > MAX_DISPLAY_NAME_CHARACTER_LIMIT) {
         [self presentAlertViewWithTitle:maximumDisplayNameAlertViewTitile
                                 message:maximumDisplayNameAlertViewMessage];
         return NO;
@@ -243,7 +250,7 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
     // If the reputation text field is not empty
     if ([reputation length] != 0) {
         // If the Reputation text field is greater than 7 characters
-        if ([reputation length] > 7) {
+        if ([reputation length] > MAX_REPUTATION_CHARACTER_LIMIT) {
             [self presentAlertViewWithTitle:maximumReputationAlertViewTitle
                                     message:maximumReputationAlertViewMessage];
             return NO;
@@ -265,7 +272,7 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
     // If the gold badge count text field is not empty
     if ([goldBadgeCount length] != 0) {
         // If the Gold Badge Count text field is greater than 4 characters
-        if ([goldBadgeCount length] > 4) {
+        if ([goldBadgeCount length] > MAX_GOLD_BADGE_COUNT_CHARACTER_LIMIT) {
             [self presentAlertViewWithTitle:maximumGoldBadgeCountAlertViewTitile
                                     message:maximumGoldBadgeCountAlertViewMessage];
             return NO;
@@ -287,7 +294,7 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
     // If the silver badge count text field is not empty
     if ([silverBadgeCount length] != 0) {
         // If the Silver Badge Count text field is greater than 4 characters
-        if ([silverBadgeCount length] > 4) {
+        if ([silverBadgeCount length] > MAX_SILVER_BADGE_COUNT_CHARACTER_LIMIT) {
             [self presentAlertViewWithTitle:maximumSilverBadgeCountAlertViewTitile
                                     message:maximumSilverBadgeCountAlertViewMessage];
             return NO;
@@ -309,7 +316,7 @@ static NSString * const maximumBronzeBadgeCountAlertViewMessage = @"Please enter
     // If the bronze badge count text field is not empty
     if ([bronzeBadgeCount length] != 0) {
         // If the Bronze Badge Count text field is greater than 4 characters
-        if ([bronzeBadgeCount length] > 4) {
+        if ([bronzeBadgeCount length] > MAX_BRONZE_BADGE_COUNT_CHARACTER_LIMIT) {
             [self presentAlertViewWithTitle:maximumBronzeBadgeCountAlertViewTitile
                                     message:maximumBronzeBadgeCountAlertViewMessage];
             return NO;
